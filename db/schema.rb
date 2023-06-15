@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_024719) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_203244) do
   create_table "milestones", force: :cascade do |t|
     t.string "title"
     t.integer "project_id", null: false
@@ -24,6 +24,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_024719) do
     t.string "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,5 +38,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_024719) do
     t.string "avatar"
   end
 
+  create_table "viewers", force: :cascade do |t|
+    t.string "name"
+    t.integer "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_viewers_on_project_id"
+  end
+
   add_foreign_key "milestones", "projects"
+  add_foreign_key "viewers", "projects"
 end
