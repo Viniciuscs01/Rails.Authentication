@@ -8,13 +8,8 @@ class ProjectsController < ApplicationController
     # render json: @projects
     respond_to do |format|
       format.html
-      format.json { render json: @projects.to_json(include: :milestones) }
+      format.json { render json: @projects }
     end
-  end
-
-  # GET /projects/1
-  def show
-    render json: @project
   end
 
   # POST /projects
@@ -28,19 +23,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /projects/1
-  def update
-    if @project.update(project_params)
-      render json: @project
-    else
-      render json: @project.errors, status: :unprocessable_entity
-    end
-  end
 
-  # DELETE /projects/1
-  def destroy
-    @project.destroy
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
