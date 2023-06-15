@@ -5,8 +5,11 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all
-
-    render json: @projects
+    # render json: @projects
+    respond_to do |format|
+      format.html
+      format.json { render json: @projects.to_json(include: :milestones) }
+    end
   end
 
   # GET /projects/1
