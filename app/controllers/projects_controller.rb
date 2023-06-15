@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = Project.all
+    #@projects = Project.all
+    @projects = Project.paginate(:page => params[:page], :per_page => params[:per_page]).order('created_at DESC')
     # render json: @projects
     respond_to do |format|
       format.html
